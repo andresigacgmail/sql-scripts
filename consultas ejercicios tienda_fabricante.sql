@@ -194,3 +194,24 @@ select f.nombre, count(p.id) as "cantidad productos" from fabricante f left join
 -- 17
 
 
+create table prueba(
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    apellido_dos VARCHAR(50)
+);
+
+
+insert into prueba (nombre, apellido_dos) values ('pepe','igss');
+insert into prueba (nombre, apellido_dos) values ('dutch','saag');
+insert into prueba (nombre, apellido_dos) values ('jultz','beintz');
+insert into prueba (nombre, apellido_dos) values ('fetch','strugh');
+
+select * from prueba;
+
+update prueba set apellido = apellido_dos where apellido is NULL;
+update prueba set apellido = null where apellido is not NULL;
+
+select * from information_schema.columns where table_name = 'producto';
+
+
+
