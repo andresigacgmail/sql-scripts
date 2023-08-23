@@ -101,7 +101,55 @@ select * from information_schema.columns where table_name = 'main_estacion';
 select * from information_schema.columns where table_name = 'materializacion';
 select * from main_estacion limit 2;
 select * from information_schema.columns where table_name = 'puntoreferencia';
+select * from municipio where nombre = 'EL RETORNO';
+select * from puntoreferencia;
 
+-- alter table municipio add column descripción varchar(200);
+
+select * from information_schema.columns where table_name = 'main_estacion';
+select * from main_estacion limit 5;
+select * from information_schema.columns where table_name = 'municipio';
+select * from information_schema.columns where table_name = 'main_estacion';
+
+select * from main_estacion where nomenclatura = 'CBYR';
+select * from main_estacion where nomenclatura = '3MAT';
+select * from information_schema.columns where table_name = 'elemento_fisico';
+select * from information_schema.table_constraints where constraint_type = 'FOREIGN KEY';
+select * from d_estadoverticetipo;
+select * from d_coordenadatipo;
+
+select * from view_estaciones_geodesicas limit 5;
+select * from d_estadoverticetipo;
+
+select kcu.table_schema || '.' ||kcu.table_name as foreign_table,
+       '>-' as rel,
+       rel_tco.table_schema || '.' || rel_tco.table_name as primary_table,
+       string_agg(kcu.column_name, ', ') as fk_columns,
+       kcu.constraint_name
+from information_schema.table_constraints tco
+join information_schema.key_column_usage kcu
+          on tco.constraint_schema = kcu.constraint_schema
+          and tco.constraint_name = kcu.constraint_name
+join information_schema.referential_constraints rco
+          on tco.constraint_schema = rco.constraint_schema
+          and tco.constraint_name = rco.constraint_name
+join information_schema.table_constraints rel_tco
+          on rco.unique_constraint_schema = rel_tco.constraint_schema
+          and rco.unique_constraint_name = rel_tco.constraint_name
+where tco.constraint_type = 'FOREIGN KEY'
+group by kcu.table_schema,
+         kcu.table_name,
+         rel_tco.table_name,
+         rel_tco.table_schema,
+         kcu.constraint_name
+order by kcu.table_schema,
+         kcu.table_name;
+
+select * from municipio;    
+select * from information_schema.columns where table_name = 'main_estacion';
+select * from main_estacion limit 5;    
+select * from materializacion;
+select * from information_schema.columns where table_name = 'materializacion';
 
 
 
