@@ -196,7 +196,26 @@ select rinex.*, ma.identificador from rinex, main_estacion ma where rinex.estaci
 select rinex.*, ma.identificador from rinex, main_estacion ma where rinex.estacion = ma.t_id and estacion = 1  order by anio desc ,dia_del_anio ASC
     limit 5;
     
+select * from main_estacion where identificador = '91001001';
 
+select nomenclatura,latitud,longitud,de.ilicode as estado, a.sigla as agencia, m.nombre,d.nombrefrom gis_owner_centroctrl_prod.main_estacion meleft 
+    join gis_owner_centroctrl_prod.d_estadoestaciontipo deon me.estado =de.t_idleft join gis_owner_centroctrl_prod.agencia aon me.agencia=a.t_idleft 
+    join gis_owner_centroctrl_prod.municipio mon me.municipio=m.t_idleft join gis_owner_centroctrl_prod.departamento don m.departamento=d.t_idwhereupper(nomenclatura) 
+    like upper('%' || $filtro || '%') orupper(a.sigla) like upper('%' || $filtro || '%') orupper(m.nombre) like upper('%' || $filtro || '%') orupper(d.nombre) 
+    like upper('%' || $filtro || '%')and a.t_id=agencia_usrlimit 50;
+
+select * from municipio limit 5;
+select * from materializacion limit 5;
+select count(*) from materializacion;
+select count(*) from materializacion where lugar_materializacion is not null;
+select * from materializacion where lugar_materializacion is null;
+select * from main_estacion where t_id = 20;
+select * from main_estacion where t_id in (select estacion from materializacion where lugar_materializacion is not null);
+select * from main_estacion where t_id in (select estacion from materializacion where lugar_materializacion is not null);
+select * from medicionposicion where estacion = 4693;
+select count(*) from medicionposicion; -- 8485
+select * from medicionposicion;
+select * from extadjunto;
 
 
 
