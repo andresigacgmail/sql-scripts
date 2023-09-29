@@ -145,11 +145,59 @@ group by kcu.table_schema,
 order by kcu.table_schema,
          kcu.table_name;
 
-select * from municipio;    
+select * from municipio where t_id = 654;
 select * from information_schema.columns where table_name = 'main_estacion';
 select * from main_estacion limit 5;    
 select * from materializacion;
 select * from information_schema.columns where table_name = 'materializacion';
+select * from main_estacion;
+
+
+select estacion, * from materializacion order by t_id desc limit 5;
+select * from information_schema.columns where table_name = 'materializacion';
+select * from d_materializaciontipo;
+select * from information_schema.columns where table_name = 'd_materializaciontipo';
+select * from municipio order by t_id;
+select * from d_estadoverticetipo order by t_id;
+
+select * from main_estacion ma join materializacion m on m.estacion = ma.t_id join puntoreferencia pu on pu.estacion = ma.t_id order by ma.t_id desc limit 12;
+ 
+ 
+ select * from main_estacion ma join materializacion m on m.estacion = ma.t_id order by ma.t_id desc limit 12;
+
+ select ma.t_id, ma.identificador, m.tipo_materializacion, m.fecha_materializacion, m.altura_referencia_antena, m.lugar_materializacion, m.estacion
+     from main_estacion ma join materializacion m on m.estacion = ma.t_id order by ma.t_id desc limit 12;
+
+select * from materializacion order by t_id desc limit 12;
+
+select * from main_estacion where identificador = 'B5-TL-1';
+--update materializacion set  tipo_materializacion = 2, fecha_materializacion = '1996'  where estacion =  'B5-TL-1';
+
+--select count(*) from main_estacion where latitud = 7.16440000;
+select count(*) from materializacion;
+
+select * from materializacion where estacion = 212;
+--update materializacion set  tipo_materializacion = 2, fecha_materializacion = '1996-12-12'  where estacion = (select t_id from main_estacion where identificador = 'B5-TL-1');
+
+select * from main_estacion where identificador = 'GPS-VD-001';
+
+
+select count(*) from main_estacion where altura_msnmm is null;
+select * from main_estacion limit 5;
+select count(*) from main_estacion where latitud = '7.16440000' and longitud = '6.22100000'; -- 11460  después 9075
+
+select * from main_estacion where identificador = '05001007';
+select * from rinex where estacion = 1 order by t_id desc limit 5;
+select * from main_estacion where t_id = 1;
+select * from main_estacion where identificador = 'BOSC';
+select rinex.*, ma.identificador from rinex, main_estacion ma where rinex.estacion = ma.t_id and estacion = 1 order by anio desc ,dia_del_anio desc
+    limit 5;
+
+select rinex.*, ma.identificador from rinex, main_estacion ma where rinex.estacion = ma.t_id and estacion = 1  order by anio desc ,dia_del_anio ASC
+    limit 5;
+    
+
+
 
 
 
