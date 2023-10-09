@@ -219,7 +219,13 @@ select * from extadjunto;
 
 
 
+create table materializacion(
+    t_id serial,
+    estacion int,
+    acceso_general varchar(1000)
+);
 
+select * from materializacion where estacion = 8864;
 
 
 
